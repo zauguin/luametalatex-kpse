@@ -703,7 +703,7 @@ static int init_prog(lua_State * L)
 {
     const char *prefix = luaL_checkstring(L, 1);
     unsigned dpi = (unsigned) luaL_checkinteger(L, 2);
-    const char *mode = luaL_checkstring(L, 3);
+    const char *mode = luaL_optstring(L, 3, NULL);
     const char *fallback = luaL_optstring(L, 4, NULL);
     TEST_PROGRAM_NAME_SET;
     kpse_init_prog(prefix, dpi, mode, fallback);
@@ -715,7 +715,7 @@ static int lua_kpathsea_init_prog(lua_State * L)
     kpathsea *kp = (kpathsea *) luaL_checkudata(L, 1, KPATHSEA_METATABLE);
     const char *prefix = luaL_checkstring(L, 2);
     unsigned dpi = (unsigned) luaL_checkinteger(L, 3);
-    const char *mode = luaL_checkstring(L, 4);
+    const char *mode = luaL_optstring(L, 4, NULL);
     const char *fallback = luaL_optstring(L, 5, NULL);
     kpathsea_init_prog(*kp, prefix, dpi, mode, fallback);
     return 0;
